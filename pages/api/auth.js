@@ -5,14 +5,11 @@ export default async function handler(req, res) {
   
   const base_url = 'https://api.tdameritrade.com/v1';
 
+  const query = `?grant_type=authorization_code&refresh_token=&access_type=offline&code=${req.query.code || ''}&client_id=${encodeURIComponent(process.env.CLIENT_ID + "@AMER.OAUTHAP")}&redirect_uri=${redirect_uri}`
+  console.log('Query:',query);
+
   try {
-    const response = await axios.post(base_url + "/oauth2/token", {
-      grant_type: "authorization_code",
-      access_type: "offline",
-      code: req.query.code, // get the code from url
-      client_id: process.env.CLIENT_ID + "@AMER.OAUTHAP", // client id stored in heroku
-      redirect_uri: redirect_uri,
-    }, {headers: {
+    const response = await axios.post(base_url + "/oauth2/token" + query, {}, {headers: {
       "Content-Type": "application/x-www-form-urlencoded",
     }});
 
