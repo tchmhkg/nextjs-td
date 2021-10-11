@@ -5,7 +5,7 @@ export default async function handler(req, res) {
   
   const base_url = 'https://api.tdameritrade.com/v1';
 
-  const query = `?grant_type=authorization_code&refresh_token=&access_type=offline&code=${req.query.code || ''}&client_id=${encodeURIComponent(process.env.CLIENT_ID + "@AMER.OAUTHAP")}&redirect_uri=${redirect_uri}`
+  const query = `?grant_type=authorization_code&refresh_token=&access_type=offline&code=${encodeURIComponent(req.query.code || '')}&client_id=${encodeURIComponent(process.env.CLIENT_ID + "@AMER.OAUTHAP")}&redirect_uri=${encodeURIComponent(redirect_uri)}`
   console.log('Query:',query);
 
   try {
