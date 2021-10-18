@@ -1,6 +1,7 @@
 import axios from "axios";
 import url from 'url';
 
+// Moved to pages/auth
 export default async function handler(req, res) {
   const redirect_uri = process.env.REDIRECT_HOST+'/auth';
   
